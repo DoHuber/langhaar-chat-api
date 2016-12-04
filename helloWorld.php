@@ -6,4 +6,8 @@
  * Time: 01:23
  */
 
-echo "Hello World from PHP!";
+echo "A random token: <br>";
+
+$token = md5(uniqid("", true));
+
+print $token;
