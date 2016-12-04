@@ -43,12 +43,14 @@ class MessageMapper extends Mapper
 
         $statement = $this->pdo->prepare("SELECT * FROM message WHERE created_time > :ts ORDER BY created_time DESC");
         $statement->bindParam(":ts", $timeStamp);
-        $statement->setFetchMode(PDO::FETCH_CLASS. "Message");
+        $statement->setFetchMode(PDO::FETCH_CLASS, "Message");
         $statement->execute();
 
         return $statement->fetchAll();
 
     }
+
+
 
 
 

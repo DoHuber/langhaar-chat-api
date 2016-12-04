@@ -6,6 +6,9 @@
  * Date: 04.12.16
  * Time: 01:59
  */
+require "DBConnection.php";
+
+
 class Mapper
 {
     protected $pdo;
@@ -15,6 +18,11 @@ class Mapper
 
         $this->pdo = DBConnection::getConnection();
 
+    }
+
+    function __destruct()
+    {
+        $this->pdo = null;
     }
 
 
