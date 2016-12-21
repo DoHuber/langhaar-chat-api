@@ -32,7 +32,17 @@ function reply($code) {
 
 function isAuthTokenValid($token) {
 
-    return ($token == "f76e2efb3cb1c603d93370f4fbc70f1d");
+    return ($token == getTokenFromDb());
+
+}
+
+function getTokenFromDb() {
+
+    $pdo = DBConnection::getConnection();
+    $stmt = $pdo->query("SELECT kv_value FROM keyvaluetext WHERE kv_key = 'token'");
+    $stmt->execute();
+
+    return $stmt->fetchColumn(0);
 
 }
 

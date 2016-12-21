@@ -5,6 +5,8 @@
  * Date: 04.12.16
  * Time: 01:23
  */
+require "extra.php";
+
 
 echo "A random token: <br>";
 

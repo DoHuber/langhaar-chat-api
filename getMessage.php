@@ -41,10 +41,11 @@ if ($type == "twenty") {
 } elseif($type == "since") {
 
     $timeStamp = $_GET["timestamp"];
-    $timeStamp = date("Y-m-d H:i:s", $timeStamp);
+    $seconds = $timeStamp / 1000;
+    $theTime = date("Y-m-d H:i:s", $seconds);
 
     $mMapper = new MessageMapper();
-    $messages = $mMapper->getAllSince($timeStamp);
+    $messages = $mMapper->getAllSince($theTime);
 
     $json = json_encode($messages);
 
@@ -55,9 +56,5 @@ if ($type == "twenty") {
     print_r($json);
 
     exit();
-
-} else {
-
-    reply(400);
 
 }

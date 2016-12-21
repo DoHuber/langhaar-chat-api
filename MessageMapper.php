@@ -20,9 +20,11 @@ class MessageMapper extends Mapper
                 "INSERT INTO message(title, body, created_time, author_id) VALUES"
                 ." (:title, :body, :created, :author)");
 
+        $theTime = date("Y-m-d H:i:s");
+
         $statement->bindParam(":title", $message->title);
         $statement->bindParam(":body", $message->body);
-        $statement->bindParam(":created", date("Y-m-d H:i:s", time()));
+        $statement->bindParam(":created", $theTime);
         $statement->bindParam(":author", $message->author_id);
             
         $statement->execute();
