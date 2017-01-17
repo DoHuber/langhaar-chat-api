@@ -14,7 +14,7 @@ class UserMapper extends Mapper
 
         $statement =
             $this->pdo->prepare(
-                "INSERT INTO user(first_name, last_name, email, user_password, passphrase) VALUES "
+                "INSERT INTO user(first_name, last_name, email, user_password, pin) VALUES "
                 . "(:firstn, :lastn, :email, :userp, :passp)");
 
         $statement->bindParam(":firstn", $u->first_name);

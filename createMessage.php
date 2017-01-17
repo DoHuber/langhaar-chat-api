@@ -16,10 +16,16 @@ if(!isAuthTokenValid($token)) {
     die();
 }
 
+$pin = $_POST["pin"];
 $authorid = $_POST["id"];
+
+if (!isPinValid($authorid, $pin)) {
+    reply(403);
+    die();
+}
+
 $inhalt = $_POST["content"];
 $title = $_POST["title"];
-
 
 $toSave = new Message();
 $toSave->author_id = $authorid;

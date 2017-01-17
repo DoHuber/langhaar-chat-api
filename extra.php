@@ -36,6 +36,22 @@ function isAuthTokenValid($token) {
 
 }
 
+function isPinValid($userId, $pin) {
+
+    $pdo = DBConnection::getConnection();
+    $statement = $pdo->prepare("SELECT :userpin = (SELECT pin FROM user WHERE id = :userid) AS pin_matches");
+    $statement->bindParam(":userpin", $pin);
+    $statement->bindParam(":userid", $userId);
+
+    $statement->execute();
+
+    $rows = $statement->fetchAll();
+    $matches = $rows[0]["pin_matches"];
+
+    return $matches;
+
+}
+
 function getTokenFromDb() {
 
     $pdo = DBConnection::getConnection();
